@@ -1,5 +1,5 @@
 # bouncing-square
-A bouncing square on a white screen (a progressive implementation of Pong)
+A bouncing square on a white screen.
 
 Motivation of this program is to progressively develop an implementation of Pong.
 
