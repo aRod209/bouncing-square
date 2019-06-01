@@ -1,3 +1,5 @@
+import java.awt.event.KeyEvent;
+
 /******************************************************************************
 * Bouncing square.
 * 
@@ -13,8 +15,9 @@ public class Game {
 	 * Draws objects to the screen.
 	 * @param square The bouncing square on the screen.
 	 */
-	private static void draw(Square square) {
+	private static void draw(Square square, Paddle paddle) {
 		StdDraw.clear(StdDraw.BLACK);
+		StdDraw.filledRectangle(paddle.getX(), paddle.getY(), paddle.getrX(), paddle.getrY());
 		StdDraw.filledSquare(square.getX(), square.getY(), square.getHalfLength());
 		StdDraw.text(0.0, 0.9, "Bounces: " + bounces);
 		StdDraw.show();
@@ -31,12 +34,15 @@ public class Game {
 		StdDraw.enableDoubleBuffering();
 		StdDraw.setPenColor(StdDraw.WHITE);
 		Square square = new Square();
+		Paddle paddle = new Paddle();
 		CollisionDetector cd = new CollisionDetector();
 		while(true) {
+			if (StdDraw.isKeyPressed(KeyEvent.VK_UP)) { paddle.moveUp(); }
+			if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) { paddle.moveDown(); }
 			square.moveX();
 			square.moveY();
 			if (cd.borderCollision(square)) { bounces += 1; }
-			Game.draw(square);
+			Game.draw(square, paddle);
 		}
 	}
 }
