@@ -47,4 +47,20 @@ public class Paddle {
         if (y - ry > -Game.HALF_SCREEN_LENGTH) { y -= v; }
     }
 
+    public double topBorder() {
+        return y + ry;
+    }
+
+    public double bottomBorder() {
+        return y - ry;
+    }
+
+    public double rightBorder() {
+        return x + rx;
+    }
+
+    public double leftBorder() {
+        return x - rx;
+    }
+
 }

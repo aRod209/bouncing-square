@@ -32,6 +32,12 @@ public class Square {
     public double getY() { return y; }
 
     /**
+     * Returns the velocity in the x-direction.
+     * @return vx x-direction velocity.
+     */
+    public double getVX() { return vx; }
+
+    /**
      * Returns the half-length of the square.
      * @return the length from the middle of the square to the middle of a side.
      */

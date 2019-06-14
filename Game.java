@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 public class Game {
     public final static double HALF_SCREEN_LENGTH = 1.0;
     private static int bounces = 0;
+    private static int collsions = 0;
 
     /**
      * Draws objects to the screen.
@@ -19,7 +20,8 @@ public class Game {
         StdDraw.clear(StdDraw.BLACK);
         StdDraw.filledRectangle(paddle.getX(), paddle.getY(), paddle.getrX(), paddle.getrY());
         StdDraw.filledSquare(square.getX(), square.getY(), square.getHalfLength());
-        StdDraw.text(0.0, 0.9, "Bounces: " + bounces);
+        StdDraw.text(0.0, 0.9, "Border Collsions: " + bounces);
+        StdDraw.text(0.0, 0.8, "Paddle Collisions: " + collsions);
         StdDraw.show();
         StdDraw.pause(7);
     }
@@ -42,6 +44,7 @@ public class Game {
             square.moveX();
             square.moveY();
             if (cd.borderCollision(square)) { bounces += 1; }
+            if(cd.paddleCollision(square, paddle)) { collsions += 1; }
             Game.draw(square, paddle);
         }
     }

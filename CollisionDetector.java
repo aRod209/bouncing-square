@@ -22,4 +22,18 @@ public class CollisionDetector {
         }
         return false;
     }
+
+    public boolean paddleCollision(Square s, Paddle p) {
+        if (
+                ((s.getVX() > 0 && s.getX() < p.getX() && s.rightBorder() >= p.leftBorder()) ||
+                (s.getVX() < 0 && s.getX() > p.getX() && s.leftBorder() <= p.rightBorder())) &&
+                ((s.bottomBorder() >= p.bottomBorder() && s.topBorder() <= p.topBorder()) ||
+                 (s.bottomBorder() <= p.topBorder() && s.topBorder() > p.topBorder()) ||
+                 (s.topBorder() >= p.bottomBorder() && s.bottomBorder() < p.bottomBorder()))
+        ) {
+            s.reverseVX();
+            return true;
+        }
+        return false;
+    }
 }
