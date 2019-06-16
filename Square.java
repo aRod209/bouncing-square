@@ -38,6 +38,12 @@ public class Square {
     public double getVX() { return vx; }
 
     /**
+     * Returns the velocity in the y-direction.
+     * @return vy y-direction velocity.
+     */
+    public double getVY() { return vy; }
+
+    /**
      * Returns the half-length of the square.
      * @return the length from the middle of the square to the middle of a side.
      */
@@ -62,6 +68,12 @@ public class Square {
      * Reverses the y-velocity.
      */
     public void reverseVY() { vy = -vy; }
+
+    /**
+     * Sets VY to formal parameter.
+     * @param yVel the new y-direction velocity.
+     */
+    public void setVY(double yVel) { vy = yVel; }
 
     /**
      * Returns the y-coordinate of the square's top-border.

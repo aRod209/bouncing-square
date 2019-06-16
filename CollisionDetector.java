@@ -32,8 +32,15 @@ public class CollisionDetector {
                  (s.topBorder() >= p.bottomBorder() && s.bottomBorder() < p.bottomBorder()))
         ) {
             s.reverseVX();
+
+            if (
+                (s.getVY() < 0 && s.getY() > p.getY()) ||
+                (s.getVY() > 0 && s.getY() < p.getY())
+               )
+                { s.reverseVY(); }
             return true;
         }
+
         return false;
     }
 }
