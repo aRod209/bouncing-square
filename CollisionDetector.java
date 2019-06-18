@@ -23,6 +23,12 @@ public class CollisionDetector {
         return false;
     }
 
+    /**
+     * Determines a collision and controls how the square reacts to the collision.
+     * @param s The square.
+     * @param p The paddle
+     * @return Boolean value indicating a collision.
+     */
     public boolean paddleCollision(Square s, Paddle p) {
         if (
                 ((s.getVX() > 0 && s.getX() < p.getX() && s.rightBorder() >= p.leftBorder()) ||
@@ -33,11 +39,21 @@ public class CollisionDetector {
         ) {
             s.reverseVX();
 
-            if (
-                (s.getVY() < 0 && s.getY() > p.getY()) ||
-                (s.getVY() > 0 && s.getY() < p.getY())
-               )
-                { s.reverseVY(); }
+            // update vy
+            double distance = Math.abs(s.getY() - p.getY());
+            double yVel;
+            if (distance <= p.getrY()) {
+                yVel = (distance / p.getrY()) * s.getVX();
+            } else {
+                yVel = s.getVX();
+            }
+
+            s.setVY(yVel);
+
+            if ((s.getVY() < 0 && s.getY() > p.getY()) ||
+                (s.getVY() > 0 && s.getY() < p.getY()))
+            { s.reverseVY(); }
+
             return true;
         }
 
