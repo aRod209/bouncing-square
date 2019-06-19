@@ -30,13 +30,7 @@ public class CollisionDetector {
      * @return Boolean value indicating a collision.
      */
     public boolean paddleCollision(Square s, Paddle p) {
-        if (
-                ((s.getVX() > 0 && s.getX() < p.getX() && s.rightBorder() >= p.leftBorder()) ||
-                (s.getVX() < 0 && s.getX() > p.getX() && s.leftBorder() <= p.rightBorder())) &&
-                ((s.bottomBorder() >= p.bottomBorder() && s.topBorder() <= p.topBorder()) ||
-                 (s.bottomBorder() <= p.topBorder() && s.topBorder() > p.topBorder()) ||
-                 (s.topBorder() >= p.bottomBorder() && s.bottomBorder() < p.bottomBorder()))
-        ) {
+        if ( collisionDetected(s, p) ) {
             s.reverseVX();
 
             // update vy
@@ -58,5 +52,19 @@ public class CollisionDetector {
         }
 
         return false;
+    }
+
+    /**
+     * Detects a collision between the square and paddle.
+     * @param s  The square.
+     * @param p The paddle.
+     * @return True if collision, false otherwise.
+     */
+    private boolean collisionDetected(Square s, Paddle p) {
+        return ((s.getVX() > 0 && s.getX() < p.getX() && s.rightBorder() >= p.leftBorder()) ||
+                (s.getVX() < 0 && s.getX() > p.getX() && s.leftBorder() <= p.rightBorder())) &&
+                ((s.bottomBorder() >= p.bottomBorder() && s.topBorder() <= p.topBorder()) ||
+                (s.bottomBorder() <= p.topBorder() && s.topBorder() > p.topBorder()) ||
+                (s.topBorder() >= p.bottomBorder() && s.bottomBorder() < p.bottomBorder()));
     }
 }
