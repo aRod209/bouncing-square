@@ -16,9 +16,10 @@ public class Game {
      * Draws objects to the screen.
      * @param square The bouncing square on the screen.
      */
-    private static void draw(Square square, Paddle paddle) {
+    private static void draw(Square square, Paddle player, Paddle opponent) {
         StdDraw.clear(StdDraw.BLACK);
-        StdDraw.filledRectangle(paddle.getX(), paddle.getY(), paddle.getrX(), paddle.getrY());
+        StdDraw.filledRectangle(player.getX(), player.getY(), player.getrX(), player.getrY());
+        StdDraw.filledRectangle(opponent.getX(), opponent.getY(), opponent.getrX(), opponent.getrY());
         StdDraw.filledSquare(square.getX(), square.getY(), square.getHalfLength());
         StdDraw.text(0.0, 0.9, "Border Collisions: " + bounces);
         StdDraw.text(0.0, 0.8, "Paddle Collisions: " + collisions);
@@ -36,16 +37,22 @@ public class Game {
         StdDraw.enableDoubleBuffering();
         StdDraw.setPenColor(StdDraw.WHITE);
         Square square = new Square();
-        Paddle paddle = new Paddle();
+        Paddle player = new Paddle(0.9);
+        Paddle opponent = new Paddle(-0.9);
         CollisionDetector cd = new CollisionDetector();
         while(true) {
-            if (StdDraw.isKeyPressed(KeyEvent.VK_UP)) { paddle.moveUp(); }
-            if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) { paddle.moveDown(); }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_UP)) { player.moveUp(); }
+            if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) { player.moveDown(); }
+            if (opponent.getY() > square.getY()) { opponent.moveDown(); }
+            if (opponent.getY() < square.getY()) { opponent.moveUp(); }
             square.moveX();
             square.moveY();
             if (cd.borderCollision(square)) { bounces += 1; }
-            if(cd.paddleCollision(square, paddle)) { collisions += 1; }
-            Game.draw(square, paddle);
+            if(cd.paddleCollision(square, player) ||
+               cd.paddleCollision(square, opponent)) {
+                collisions += 1;
+            }
+            Game.draw(square, player, opponent);
         }
     }
 }

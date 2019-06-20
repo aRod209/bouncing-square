@@ -5,9 +5,14 @@
  * @since 2019-06-01
  *****************************************************************************/
 public class Paddle {
-    private static double x = -0.3, y = 0.0; // Coordinates
+    private double x;
+    private double y = 0.0; // Coordinates
     private static double rx = 0.03, ry = 0.12; // Radii in the x and y directions;
     private static double v = 0.015;
+
+    Paddle(double x) {
+        this.x = x;
+    }
 
     /**
      * Returns the x-coordinate of the center of the paddle.
