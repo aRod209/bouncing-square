@@ -5,8 +5,9 @@
  * @since 2019-05-30
  *****************************************************************************/
 public class Square {
-    private static double x = 0.0, y = 0.0;
-    private static double vx = 0.010, vy = 0.005;
+    private double x = 0.0, y = 0.0;
+    private double vx = 0.010, vy = 0.005;
+    private double MAX_VX = 0.019;
     // The half-length is the length from the middle of the
     // square to the middle of one of the sides.
     private static double halfLength = 0.03;
@@ -42,6 +43,13 @@ public class Square {
      * @return vy y-direction velocity.
      */
     public double getVY() { return vy; }
+
+    public void increaseVX() {
+        if (Math.abs(vx) < MAX_VX) {
+            if (vx < 0) { vx -= 0.001; }
+            else { vx += 0.001; }
+        }
+    }
 
     /**
      * Returns the half-length of the square.

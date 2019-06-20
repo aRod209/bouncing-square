@@ -42,7 +42,7 @@ public class Game {
         CollisionDetector cd = new CollisionDetector();
         while(true) {
             if (StdDraw.isKeyPressed(KeyEvent.VK_UP)) { player.moveUp(); }
-            if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) { player.moveDown(); }
+            else if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) { player.moveDown(); }
             if (opponent.getY() > square.getY()) { opponent.moveDown(); }
             if (opponent.getY() < square.getY()) { opponent.moveUp(); }
             square.moveX();

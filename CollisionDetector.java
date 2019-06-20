@@ -32,6 +32,7 @@ public class CollisionDetector {
     public boolean paddleCollision(Square s, Paddle p) {
         if ( collisionDetected(s, p) ) {
             s.reverseVX();
+            s.increaseVX();
 
             // update vy
             double distance = Math.abs(s.getY() - p.getY());
