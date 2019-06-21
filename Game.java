@@ -21,8 +21,8 @@ public class Game {
         StdDraw.filledRectangle(player.getX(), player.getY(), player.getrX(), player.getrY());
         StdDraw.filledRectangle(opponent.getX(), opponent.getY(), opponent.getrX(), opponent.getrY());
         StdDraw.filledSquare(square.getX(), square.getY(), square.getHalfLength());
-        StdDraw.text(-0.5, 0.9, "Points: " + opponentPoints);
-        StdDraw.text(0.5, 0.9, "Points: " + playerPoints);
+        StdDraw.text(-0.5, 0.9, Integer.toString(opponentPoints));
+        StdDraw.text(0.5, 0.9, Integer.toString(playerPoints));
         StdDraw.show();
         StdDraw.pause(7);
     }
