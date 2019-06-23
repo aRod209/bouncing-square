@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 
 /******************************************************************************
@@ -21,8 +22,8 @@ public class Game {
         StdDraw.filledRectangle(player.getX(), player.getY(), player.getrX(), player.getrY());
         StdDraw.filledRectangle(opponent.getX(), opponent.getY(), opponent.getrX(), opponent.getrY());
         StdDraw.filledSquare(square.getX(), square.getY(), square.getHalfLength());
-        StdDraw.text(-0.5, 0.9, Integer.toString(opponentPoints));
-        StdDraw.text(0.5, 0.9, Integer.toString(playerPoints));
+        StdDraw.text(-0.5, 0.85, Integer.toString(opponentPoints));
+        StdDraw.text(0.5, 0.85, Integer.toString(playerPoints));
         StdDraw.show();
         StdDraw.pause(7);
     }
@@ -36,6 +37,7 @@ public class Game {
         StdDraw.setYscale(-HALF_SCREEN_LENGTH, HALF_SCREEN_LENGTH);
         StdDraw.enableDoubleBuffering();
         StdDraw.setPenColor(StdDraw.WHITE);
+        StdDraw.setFont(new Font("SansSerif", Font.PLAIN, 50));
         Square square = new Square();
         Paddle player = new Paddle(0.9);
         Paddle opponent = new Paddle(-0.9);
@@ -48,8 +50,10 @@ public class Game {
             square.moveX();
             square.moveY();
             cd.borderCollision(square);
-            cd.paddleCollision(square, player);
-            cd.paddleCollision(square, opponent);
+
+            // 0 is the middle of the screen
+            if (square.getX() > 0) { cd.paddleCollision(square, player); }
+            else if (square.getX() < 0) { cd.paddleCollision(square, opponent); }
             Game.draw(square, player, opponent);
         }
     }

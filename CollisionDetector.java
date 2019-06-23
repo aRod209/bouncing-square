@@ -19,9 +19,8 @@ public class CollisionDetector {
         } else if (s.rightBorder() >= screenLen) {
             Game.opponentPoints += 1;
             s.reverseVX();
-        } else if (s.topBorder() >= screenLen || s.bottomBorder() <= -screenLen) {
-            s.reverseVY();
-        }
+        } else if (s.topBorder() + s.getVY() >= screenLen ||
+                   s.bottomBorder() + s.getVY() <= -screenLen) { s.reverseVY(); }
     }
 
     /**
@@ -30,8 +29,8 @@ public class CollisionDetector {
      * @param p The paddle
      * @return Boolean value indicating a collision.
      */
-    public boolean paddleCollision(Square s, Paddle p) {
-        if ( collisionDetected(s, p) ) {
+    public void paddleCollision(Square s, Paddle p) {
+        if ( headOnCollision(s, p) || clipCollision(s, p) ) {
             s.reverseVX();
             s.increaseVX();
 
@@ -49,24 +48,35 @@ public class CollisionDetector {
             if ((s.getVY() < 0 && s.getY() > p.getY()) ||
                 (s.getVY() > 0 && s.getY() < p.getY()))
             { s.reverseVY(); }
-
-            return true;
         }
-
-        return false;
     }
 
     /**
-     * Detects a collision between the square and paddle.
-     * @param s  The square.
-     * @param p The paddle.
-     * @return True if collision, false otherwise.
+     * Detects if square is colliding with a paddle head on.
+     * @param s The square.
+     * @param p A paddle.
+     * @return True if collision detected, false otherwise.
      */
-    private boolean collisionDetected(Square s, Paddle p) {
-        return ((s.getVX() > 0 && s.getX() < p.getX() && s.rightBorder() >= p.leftBorder()) ||
+
+    private boolean headOnCollision(Square s, Paddle p) {
+        return (((s.getVX() > 0 && s.getX() < p.getX() && s.rightBorder() >= p.leftBorder()) ||
                 (s.getVX() < 0 && s.getX() > p.getX() && s.leftBorder() <= p.rightBorder())) &&
                 ((s.bottomBorder() >= p.bottomBorder() && s.topBorder() <= p.topBorder()) ||
                 (s.bottomBorder() <= p.topBorder() && s.topBorder() > p.topBorder()) ||
-                (s.topBorder() >= p.bottomBorder() && s.bottomBorder() < p.bottomBorder()));
+                (s.topBorder() >= p.bottomBorder() && s.bottomBorder() < p.bottomBorder())));
+    }
+
+    /**
+     * This is not a head-on collision, but a collision where the square
+     * clips an upper or lower corner of the paddle.
+     * @param s The square.
+     * @param p A paddle.
+     * @return True if collision detected, false otherwise.
+     */
+    private boolean clipCollision(Square s, Paddle p) {
+        return ((s.bottomBorder() <= p.topBorder() && s.topBorder() > p.topBorder()) ||
+               (s.topBorder() >= p.bottomBorder() && s.bottomBorder() < p.bottomBorder())) &&
+               ((s.rightBorder() >= p.rightBorder() && s.leftBorder() < p.rightBorder() && s.leftBorder() > p.leftBorder()) ||
+               (s.leftBorder() <= p.leftBorder() && s.rightBorder() > p.leftBorder() && s.rightBorder() < p.rightBorder()));
     }
 }
