@@ -7,20 +7,22 @@
 public class CollisionDetector {
 
     /**
-     * Detects a collision with a game-screen border.
+     * Detects a point being scored when square goes off the side of
+     * the screen.
      * @param s The bouncing square object
      * @return true if border collision, false otherwise.
      */
-    public void borderCollision(Square s) {
+    public boolean pointScored(Square s) {
         double screenLen = Game.HALF_SCREEN_LENGTH;
-        if (s.leftBorder() <= -screenLen) {
+        if (s.leftBorder() <= -screenLen-3) {
             Game.playerPoints += 1;
-            s.reverseVX();
-        } else if (s.rightBorder() >= screenLen) {
+            return true;
+        } else if (s.rightBorder() >= screenLen+3) {
             Game.opponentPoints += 1;
-            s.reverseVX();
+            return true;
         } else if (s.topBorder() + s.getVY() >= screenLen ||
                    s.bottomBorder() + s.getVY() <= -screenLen) { s.reverseVY(); }
+        return false;
     }
 
     /**

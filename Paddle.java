@@ -7,7 +7,7 @@
 public class Paddle {
     private double x;
     private double y = 0.0; // Coordinates
-    private static double rx = 0.03, ry = 0.12; // Radii in the x and y directions;
+    private static double rx = 0.03, ry = 0.13; // Radii in the x and y directions;
     private static double v = 0.015;
 
     Paddle(double x) {
