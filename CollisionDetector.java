@@ -14,13 +14,18 @@ public class CollisionDetector {
      */
     public boolean pointScored(Square s) {
         double screenLen = Game.HALF_SCREEN_LENGTH;
-        if (s.getX() <= -screenLen-3) {
-            Game.playerPoints += 1;
+        /*
+        if the absolute value if the square's x-coordinate is more than 3
+        units off the screen, a point is scored.
+         */
+        if (Math.abs(s.getX()) >= screenLen + 3) {
+            if (s.getX() > 0) { Game.playerPoints += 1; }
+            else { Game.opponentPoints += 1; }
             return true;
-        } else if (s.getX() >= screenLen+3) {
-            Game.opponentPoints += 1;
-            return true;
-        } else if (s.topBorder() + s.getVY() >= screenLen ||
+        }
+
+        // Check if square hit top or bottom of screen.
+        if (s.topBorder() + s.getVY() >= screenLen ||
                    s.bottomBorder() + s.getVY() <= -screenLen) {
             s.reverseVY();
         }
