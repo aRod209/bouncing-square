@@ -1,6 +1,6 @@
-# square-and-paddles
-A white bouncing square with two white paddles on a black screen.
+# Pong
+An implementation of the classic Pong video game.
 
-Motivation of this program is to progressively develop an implementation of Pong.
+My next addition is to add audio. 
 
-My next addition is to update the AI of the opponent paddle.
+I am debating whether I should create the audio myself or download .wav files...
