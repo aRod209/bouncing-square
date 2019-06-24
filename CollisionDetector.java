@@ -10,18 +10,20 @@ public class CollisionDetector {
      * Detects a point being scored when square goes off the side of
      * the screen.
      * @param s The bouncing square object
-     * @return true if border collision, false otherwise.
+     * @return true if point scored, false otherwise.
      */
     public boolean pointScored(Square s) {
         double screenLen = Game.HALF_SCREEN_LENGTH;
-        if (s.leftBorder() <= -screenLen-3) {
+        if (s.getX() <= -screenLen-3) {
             Game.playerPoints += 1;
             return true;
-        } else if (s.rightBorder() >= screenLen+3) {
+        } else if (s.getX() >= screenLen+3) {
             Game.opponentPoints += 1;
             return true;
         } else if (s.topBorder() + s.getVY() >= screenLen ||
-                   s.bottomBorder() + s.getVY() <= -screenLen) { s.reverseVY(); }
+                   s.bottomBorder() + s.getVY() <= -screenLen) {
+            s.reverseVY();
+        }
         return false;
     }
 
@@ -32,7 +34,7 @@ public class CollisionDetector {
      * @return Boolean value indicating a collision.
      */
     public void paddleCollision(Square s, Paddle p) {
-        if ( headOnCollision(s, p) || clipCollision(s, p) ) {
+        if (headOnCollision(s, p) || clipCollision(s, p)) {
             s.reverseVX();
             s.increaseVX();
 
@@ -59,7 +61,6 @@ public class CollisionDetector {
      * @param p A paddle.
      * @return True if collision detected, false otherwise.
      */
-
     private boolean headOnCollision(Square s, Paddle p) {
         return (((s.getVX() > 0 && s.getX() < p.getX() && s.rightBorder() >= p.leftBorder()) ||
                 (s.getVX() < 0 && s.getX() > p.getX() && s.leftBorder() <= p.rightBorder())) &&
