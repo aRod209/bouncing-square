@@ -52,6 +52,9 @@ public class Game {
                opponentPoints == GAME_WINNING_POINTS;
     }
 
+    /**
+     * Shows message "Player Wins" on winning side of screen.
+     */
     private static void drawWinnerMessage() {
         if (playerPoints == GAME_WINNING_POINTS) {
             StdDraw.text(0.5, 0.65, "Player Wins");
