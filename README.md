@@ -5,9 +5,9 @@ The player is on the right side. To move up press W or the up arrow. To move dow
 
 To Run:
 1. Download files.
-2. Using terminal, change directory into the pong folder (folder containing Game.java).
-3. To compile: javac Game.java
-4. To run: java Game
+2. Using terminal, change directory into the pong folder (folder containing Pong.java).
+3. To compile: javac Pong.java
+4. To run: java Pong
 
 Possible additions:
 1. restart feature
