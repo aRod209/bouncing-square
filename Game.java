@@ -78,9 +78,11 @@ public class Game {
         Square square = new Square();
         CollisionDetector cd = new CollisionDetector();
         while(true) {
-            if (StdDraw.isKeyPressed(KeyEvent.VK_UP)) {
+            if (StdDraw.isKeyPressed(KeyEvent.VK_UP) ||
+                StdDraw.isKeyPressed(KeyEvent.VK_W)) {
                 player.moveUp();
-            } else if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN)) {
+            } else if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN) ||
+                       StdDraw.isKeyPressed(KeyEvent.VK_S)) {
                 player.moveDown();
             }
             if (!game_over) {
