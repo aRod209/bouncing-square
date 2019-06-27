@@ -6,15 +6,18 @@
  */
 public class SoundGenerator {
 
+    /**
+     * Generates sound when the square collides with a paddle.
+     */
     public static void paddleCollisionSound() {
         StdAudio.play("Beep1.wav");
     }
 
+    /**
+     * Generates sound when the square collides with the top
+     * or bottom border.
+     */
     public static void borderCollisionSound() {
         StdAudio.play("Beep2.wav");
-    }
-
-    public static void main(String[] args) {
-        paddleCollisionSound();
     }
 }
