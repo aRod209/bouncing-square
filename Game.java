@@ -73,9 +73,9 @@ public class Game {
         StdDraw.enableDoubleBuffering();
         StdDraw.setPenColor(StdDraw.WHITE);
         StdDraw.setFont(new Font("SansSerif", Font.PLAIN, 45));
-        Square square = new Square();
         Paddle player = new Paddle(0.9);
         Paddle opponent = new Paddle(-0.9);
+        Square square = new Square();
         CollisionDetector cd = new CollisionDetector();
         while(true) {
             if (StdDraw.isKeyPressed(KeyEvent.VK_UP)) {

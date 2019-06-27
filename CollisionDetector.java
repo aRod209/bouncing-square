@@ -19,8 +19,8 @@ public class CollisionDetector {
         units off the screen, a point is scored.
          */
         if (Math.abs(s.getX()) >= screenLen + 3) {
-            if (s.getX() > 0) { Game.playerPoints += 1; }
-            else { Game.opponentPoints += 1; }
+            if (s.getX() > 0) { Game.opponentPoints += 1; }
+            else { Game.playerPoints += 1; }
             return true;
         }
 
@@ -28,6 +28,7 @@ public class CollisionDetector {
         if (s.topBorder() + s.getVY() >= screenLen ||
                    s.bottomBorder() + s.getVY() <= -screenLen) {
             s.reverseVY();
+            if (Math.abs(s.getX()) < 1) { SoundGenerator.borderCollisionSound(); }
         }
         return false;
     }
@@ -57,6 +58,7 @@ public class CollisionDetector {
             if ((s.getVY() < 0 && s.getY() > p.getY()) ||
                 (s.getVY() > 0 && s.getY() < p.getY()))
             { s.reverseVY(); }
+            SoundGenerator.paddleCollisionSound();
         }
     }
 
