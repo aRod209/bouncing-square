@@ -10,7 +10,7 @@ public class SoundGenerator {
      * Generates sound when the square collides with a paddle.
      */
     public static void paddleCollisionSound() {
-        StdAudio.play("Beep1.wav");
+        StdAudio.play("sounds/Beep1.wav");
     }
 
     /**
@@ -18,6 +18,6 @@ public class SoundGenerator {
      * or bottom border.
      */
     public static void borderCollisionSound() {
-        StdAudio.play("Beep2.wav");
+        StdAudio.play("sounds/Beep2.wav");
     }
 }
