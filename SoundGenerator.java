@@ -1,3 +1,9 @@
+/**
+ * Class used for game audio
+ *
+ * @author Anthony Rodriguez
+ * @since 2019-06-26
+ */
 public class SoundGenerator {
 
     public static void paddleCollisionSound() {
