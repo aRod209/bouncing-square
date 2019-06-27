@@ -28,7 +28,7 @@ public class CollisionDetector {
         if (s.topBorder() + s.getVY() >= screenLen ||
                    s.bottomBorder() + s.getVY() <= -screenLen) {
             s.reverseVY();
-            if (Math.abs(s.getX()) < 1) { SoundGenerator.borderCollisionSound(); }
+            SoundGenerator.borderCollisionSound(s);
         }
         return false;
     }

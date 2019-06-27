@@ -15,9 +15,10 @@ public class SoundGenerator {
 
     /**
      * Generates sound when the square collides with the top
-     * or bottom border.
+     * or bottom border on the screen.
+     * @param s
      */
-    public static void borderCollisionSound() {
-        StdAudio.play("sounds/Beep2.wav");
+    public static void borderCollisionSound(Square s) {
+        if (Math.abs(s.getX()) <1) { StdAudio.play("sounds/Beep2.wav"); }
     }
 }
