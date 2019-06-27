@@ -18,6 +18,7 @@ public class Square {
     Square() {
         if (Math.random() < 0.5) { vx = -vx; }
         if (Math.random() < 0.5) { vy = -vy; }
+        SoundGenerator.servingSound();
     }
 
     /**

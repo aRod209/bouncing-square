@@ -13,14 +13,14 @@ public class CollisionDetector {
      * @return true if point scored, false otherwise.
      */
     public boolean pointScored(Square s) {
-        double screenLen = Game.HALF_SCREEN_LENGTH;
+        double screenLen = Pong.HALF_SCREEN_LENGTH;
         /*
         if the absolute value if the square's x-coordinate is more than 3
         units off the screen, a point is scored.
          */
         if (Math.abs(s.getX()) >= screenLen + 3) {
-            if (s.getX() > 0) { Game.opponentPoints += 1; }
-            else { Game.playerPoints += 1; }
+            if (s.getX() > 0) { Pong.opponentPoints += 1; }
+            else { Pong.playerPoints += 1; }
             return true;
         }
 

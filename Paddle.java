@@ -46,14 +46,14 @@ public class Paddle {
      * Moves the paddle up.
      */
     public void moveUp() {
-        if (y + ry < Game.HALF_SCREEN_LENGTH) { y += v; }
+        if (y + ry < Pong.HALF_SCREEN_LENGTH) { y += v; }
     }
 
     /**
      * Moves the paddle down.
      */
     public void moveDown() {
-        if (y - ry > -Game.HALF_SCREEN_LENGTH) { y -= v; }
+        if (y - ry > -Pong.HALF_SCREEN_LENGTH) { y -= v; }
     }
 
     /**

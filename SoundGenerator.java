@@ -7,6 +7,13 @@
 public class SoundGenerator {
 
     /**
+     * Generates sound whenever a new square is created and served.
+     */
+    public static void servingSound() {
+        StdAudio.play("sounds/Beep11.wav");
+    }
+
+    /**
      * Generates sound when the square collides with a paddle.
      */
     public static void paddleCollisionSound() {

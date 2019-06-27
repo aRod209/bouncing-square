@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
  * @author Anthony Rodriguez
  * @since 2019-05-30
  ******************************************************************************/
-public class Game {
+public class Pong {
     final static double HALF_SCREEN_LENGTH = 1.0;
     private final static int GAME_WINNING_POINTS = 10;
     private static boolean game_over = false;
@@ -116,7 +116,7 @@ public class Game {
                     square = null;
                 }
             }
-            Game.draw(square, player, opponent);
+            Pong.draw(square, player, opponent);
         }
     }
 }
