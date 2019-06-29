@@ -25,7 +25,7 @@ public class Pong {
         drawCenterDivider();
         StdDraw.text(-0.5, 0.85, Integer.toString(opponentPoints));
         StdDraw.text(0.5, 0.85, Integer.toString(playerPoints));
-        if (game_over) { drawWinnerMessage(); }
+        if (game_over) { drawEndingText(); }
         StdDraw.show();
         StdDraw.pause(7);
     }
@@ -55,7 +55,7 @@ public class Pong {
     /**
      * Shows message "Player Wins" on winning side of screen.
      */
-    private static void drawWinnerMessage() {
+    private static void drawEndingText() {
         if (playerPoints == GAME_WINNING_POINTS) {
             StdDraw.text(0.5, 0.65, "Player Wins");
         } else {
@@ -84,6 +84,17 @@ public class Pong {
             } else if (StdDraw.isKeyPressed(KeyEvent.VK_DOWN) ||
                        StdDraw.isKeyPressed(KeyEvent.VK_S)) {
                 player.moveDown();
+            } else if (StdDraw.isKeyPressed(KeyEvent.VK_R) &&
+                       game_over) {
+                // Restart game.
+                game_over = false;
+
+                // Set points back to 0
+                playerPoints = 0;
+                opponentPoints = 0;
+
+                // Create a new square
+                square = new Square();
             }
             if (!game_over) {
                 // Move the AI opponent
@@ -103,6 +114,9 @@ public class Pong {
                 if (square.getX() > 0) { cd.paddleCollision(square, player); }
                 else if (square.getX() < 0) { cd.paddleCollision(square, opponent); }
 
+                // Check if a point is scored
+                cd.pointScored(square);
+
                 // Check if the game is over
                 game_over = isGameOver();
 
@@ -110,9 +124,9 @@ public class Pong {
                 If a point is scored and the game is not over then create a
                 new square, otherwise don't.
                  */
-                if (cd.pointScored(square)  && !game_over) {
+                if (!game_over) {
                     square = new Square();
-                } else if (game_over) {
+                } else {
                     square = null;
                 }
             }

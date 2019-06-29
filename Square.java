@@ -6,8 +6,8 @@
  *****************************************************************************/
 public class Square {
     private double x = 0.0, y = 0.0;
-    private double vx = 0.013, vy = 0.005;
-    private double MAX_VX = 0.019;
+    private double vx = 0.014, vy = 0.005;
+    private double MAX_VX = 0.020;
     // The half-length is the length from the middle of the
     // square to the middle of one of the sides.
     private static double halfLength = 0.03;
